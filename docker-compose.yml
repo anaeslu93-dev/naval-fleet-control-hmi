@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  naval_db:
+    image: postgres:15
+    container_name: naval_fleet_postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: ana_admin
+      POSTGRES_PASSWORD: password_proyecto_123
+      POSTGRES_DB: naval_fleet_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./database:/docker-entrypoint-initdb.d

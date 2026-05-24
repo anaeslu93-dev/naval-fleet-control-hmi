@@ -1,0 +1,22 @@
+# Entornos virtuales
+venv/
+.venv/
+ENV/
+env/
+
+# Archivos temporales de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Ignorar por completo la carpeta de datos y cualquier archivo comprimido
+data/
+*.csv
+*.zip
+*.rar
+*.7z

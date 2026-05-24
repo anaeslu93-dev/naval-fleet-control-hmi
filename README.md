@@ -1,5 +1,7 @@
 # ⚓ NAVAL FLEET CONTROL HMI & BIG DATA ARCHITECTURE
 
+[![Validación de Infraestructura & QA](https://github.com/anaeslu93-dev/naval-fleet-control-hmi/actions/workflows/ci-pipeline.yml/badge.svg)](https://github.com/anaeslu93-dev/naval-fleet-control-hmi/actions/workflows/ci-pipeline.yml)
+
 Este proyecto consiste en el desarrollo de un **Centro de Control Naval (HMI)** profesional e interactivo diseñado para la ingesta, procesamiento, almacenamiento y análisis analítico de datos de geolocalización marítima (sistema AIS) con más de **1.1 millones de registros**.
 
 La arquitectura ha sido migrada de un modelo plano y estático basado en archivos CSV a una infraestructura moderna de datos empresariales utilizando contenedores virtuales.
@@ -34,3 +36,14 @@ Tener instalado **Docker Desktop**, **Python 3** y las dependencias del entorno 
 Abre la terminal en la raíz del proyecto y enciende el contenedor virtual en segundo plano:
 ```bash
 docker compose up -d
+```
+---
+
+## Automatización DevOps e Infraestructura (CI/CD)
+
+Este proyecto incorpora un flujo de **Integración Continua (CI)** automatizado mediante **GitHub Actions** (`.github/workflows/ci-pipeline.yml`). 
+
+Cada vez que se realiza un empuje (`git push`) a la rama principal del repositorio, un servidor virtualizado en la nube (Ubuntu Enterprise Runner) ejecuta de forma autónoma las siguientes tareas de orquestación:
+* **Aislamiento del Entorno:** Configura y despliega de forma nativa dependencias optimizadas de Python 3.11.
+* **Verificación de la Infraestructura:** Levanta, orquesta y arranca el entorno de la base de datos **PostgreSQL** mediante **Docker Compose** en tiempo real para validar la integridad del despliegue.
+* **Cierre Limpio del Sistema:** Desconecta e interrumpe las instancias de los contenedores de forma segura, garantizando que no existan fugas de memoria en el sistema objetivo.

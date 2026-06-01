@@ -38,8 +38,9 @@ NAVAL_FLEET_CONTROL/
 ├── src/
 │   ├── import_csv_to_db.py     # Pipeline ETL optimizado para inyección masiva
 │   └── hmi_main.py             # Interfaz web analítica reactiva (Streamlit)
+├── .gitignore                  # Exclusión de archivos de tracking de Git
 ├── docker-compose.yml          # Configuración de la infraestructura de PostgreSQL
-└── requirements.txt            # Dependencias técnicas del entorno virtual
+└── README.md                   # Documentación principal del repositorio
 ```
 ---
 

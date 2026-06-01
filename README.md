@@ -40,15 +40,18 @@ NAVAL_FLEET_CONTROL/
 │   └── hmi_main.py             # Interfaz web analítica reactiva (Streamlit)
 ├── docker-compose.yml          # Configuración de la infraestructura de PostgreSQL
 └── requirements.txt            # Dependencias técnicas del entorno virtual
+```
 ---
 
 ## Cómo Ejecutar el Proyecto
+
+Siga estos comandos profesionales desde la terminal para inicializar la infraestructura naval completa desde cero[cite: 438]:
 
 ### 1. Requisitos Previos
 Tener instalado **Docker Desktop**, **Python 3** y las dependencias del entorno virtual (`streamlit`, `pandas`, `sqlalchemy`, `plotly`).
 
 ### 2. Levantar la Base de Datos (Docker)
-Abre la terminal en la raíz del proyecto y enciende el contenedor virtual en segundo plano:
+Abre la terminal en la raíz del proyecto y enciende el contenedor virtual de la base de datos relacional en segundo plano:
 ```bash
 docker compose up -d
 ```

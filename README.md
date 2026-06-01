@@ -26,6 +26,21 @@ Toda la auditoría de la arquitectura del sistema, la estrategia de optimizació
 * **Optimización**: Creación de un **Índice B-Tree SQL (`idx_vessel_type`)** en el motor de la base de datos para reducir los tiempos de consulta y filtrado a submilisegundos, optimizando el consumo de memoria RAM.
 
 ---
+## Estructura del Proyecto
+
+```text
+NAVAL_FLEET_CONTROL/
+├── .github/
+│   └── workflows/
+│       └── ci-pipeline.yml     # Orquestación de Integración Continua (CI/CD)
+├── docs/
+│   └── Naval_Fleet_Control_Architecture_Report.pdf  # Informe oficial de ingeniería
+├── src/
+│   ├── import_csv_to_db.py     # Pipeline ETL optimizado para inyección masiva
+│   └── hmi_main.py             # Interfaz web analítica reactiva (Streamlit)
+├── docker-compose.yml          # Configuración de la infraestructura de PostgreSQL
+└── requirements.txt            # Dependencias técnicas del entorno virtual
+---
 
 ## Cómo Ejecutar el Proyecto
 
@@ -36,6 +51,16 @@ Tener instalado **Docker Desktop**, **Python 3** y las dependencias del entorno 
 Abre la terminal en la raíz del proyecto y enciende el contenedor virtual en segundo plano:
 ```bash
 docker compose up -d
+```
+### 3. Ejecutar el Pipeline ETL (Ingesta de Datos)
+Inicia el script encargado de extraer los datos masivos del archivo original, transformarlos y transmitirlos en micro-batches estructurados hacia el contenedor activo de PostgreSQL:
+```bash
+python src/import_csv_to_db.py
+```
+### 4. Lanzar la Interfaz Táctica (HMI)
+Inicializar la aplicación web de monitorización en tiempo real para desplegar el cuadro de mando interactivo en el navegador:
+```bash
+python -m streamlit run src/hmi_main.py
 ```
 ---
 

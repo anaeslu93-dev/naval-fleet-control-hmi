@@ -19,6 +19,14 @@ jobs:
       with:
         python-version: '3.11'
 
+    # CIBERSEGURIDAD AUTOMATIZADA
+    - name: Run Trivy Security Scan (IaC & Docker Hardening)
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: 'config'
+        hide-kv-links: true
+        exit-code: '0'
+
     - name: Install Docker Compose
       run: |
         sudo apt-get update

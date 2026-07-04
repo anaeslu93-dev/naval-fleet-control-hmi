@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   naval_db:
-    image: postgres:15
+    image: postgres:17-alpine
     container_name: naval_fleet_postgres_db
     restart: always
     environment:

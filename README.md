@@ -20,7 +20,7 @@ Toda la auditoría de la arquitectura del sistema, la estrategia de optimizació
 
 * **Front-end / Interfaz**: `Streamlit` y `Plotly Express` para la visualización de mapas interactivos de geolocalización, histogramas analíticos de velocidad (SOG) y métricas de rendimiento en tiempo real.
 * **Back-end / Lógica**: `Python 3` utilizando programación modular y gestión optimizada de memoria.
-* **Base de Datos**: `PostgreSQL 15` corriendo de manera aislada y persistente.
+* **Base de Datos**: `PostgreSQL 17-alpine` corriendo de manera aislada y persistente.
 * **ORM / Conectores**: `SQLAlchemy` y `Psycopg2` para inyección masiva de datos estructurados en bloques (*chunksize*).
 * **Infraestructura**: `Docker` y `Docker Compose` para garantizar la portabilidad y despliegue inmediato del entorno en cualquier sistema operativo.
 * **Optimización**: Creación de un **Índice B-Tree SQL (`idx_vessel_type`)** en el motor de la base de datos para reducir los tiempos de consulta y filtrado a submilisegundos, optimizando el consumo de memoria RAM.
@@ -47,3 +47,11 @@ Cada vez que se realiza un empuje (`git push`) a la rama principal del repositor
 * **Aislamiento del Entorno:** Configura y despliega de forma nativa dependencias optimizadas de Python 3.11.
 * **Verificación de la Infraestructura:** Levanta, orquesta y arranca el entorno de la base de datos **PostgreSQL** mediante **Docker Compose** en tiempo real para validar la integridad del despliegue.
 * **Cierre Limpio del Sistema:** Desconecta e interrumpe las instancias de los contenedores de forma segura, garantizando que no existan fugas de memoria en el sistema objetivo.
+
+## 🛡️ Decisiones de Seguridad e Infraestructura(Hardening)
+
+Durante la fase de desarrollo, se realizó una auditoría de ciberseguridad sobre los contenedores del proyecto utilizando la herramienta profesional **Trivy**.
+
+* **Problema detectado:** Tras el análisis, se detectaron más de 200 vulnerabilidades de severidad **HIGH** y **CRITICAL** en la imagen base original `postgres:15` (basada en Debian), incluyendo fallos críticos de evasión de accesos (`CVE-2026-42496` en `libperl`) y validaciones incorrectas de certificados en la capa de transporte.
+* **Solución aplicada:** Se descartó el parcheo manual por ser ineficiente e inviable en entornos reales de producción. Se optó por una solución de *Seguridad por Diseño (Security by Design)*, actualizando la directiva en el archivo `docker-compose.yml` para utilizar la imagen robustecida **`postgres:17-alpine`**.
+* **Resultado obtenido:** Al utilizar **Alpine Linux** como distribución minimalista para el contenedor, la superficie de ataque se redujo drásticamente. Se logró mitigar el 100% de las vulnerabilidades del sistema operativo, alcanzando **0 fallos detectados** en el escaneo del sistema base.

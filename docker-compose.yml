@@ -12,4 +12,15 @@ services:
     ports:
       - "5433:5432"
     volumes:
-      - ./database:/docker-entrypoint-initdb.d
+      - postgres_naval_data:/var/lib/postgresql/data
+    # --- SECCIÓN DE SYSTEM HARDENING (CIS BENCHMARKS) ---
+    user: "70:70"
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /run/postgresql:mode=777
+      - /tmp:mode=777
+
+volumes:
+  postgres_naval_data:
